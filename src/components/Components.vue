@@ -67,6 +67,10 @@
       ></my-checkbox>
       <p>foo: {{ foo }}</p>
     </div>
+    <div class="non-parent-child-communication">
+      <component-a></component-a>
+      <component-b></component-b>
+    </div>
   </div>
 </template>
 <script>
@@ -184,8 +188,9 @@ let buttonCounter = {
   }
 }
 
+// TODO: Customizing-Component-v-model
 let myCheckbox = {
-  template: '<input type="checkbox" :value="value" @change="$emit(change)">',
+  template: '<input type="checkbox" :value="value">',
   data () {
     return {
     }
@@ -197,6 +202,36 @@ let myCheckbox = {
   props: {
     checked: Boolean,
     value: String
+  }
+}
+
+let bus = new Vue()
+
+let componentA = {
+  template: '<button @click="selected">1</button>',
+  data () {
+    return {
+    }
+  },
+  methods: {
+    selected: function () {
+      bus.$emit('id-selected', 1)
+    }
+  }
+}
+
+let componentB = {
+  template: '<button>{{ index }}</button>',
+  data () {
+    return {
+      index: 0
+    }
+  },
+  created: function () {
+    let me = this
+    bus.$on('id-selected', function (id) {
+      me.index = id
+    })
   }
 }
 
@@ -227,7 +262,9 @@ export default {
     'computed-prop': computedProp,
     'props-validator': propsValidator,
     'button-counter': buttonCounter,
-    'my-checkbox': myCheckbox
+    'my-checkbox': myCheckbox,
+    'component-a': componentA,
+    'component-b': componentB
   },
   methods: {
     incrementTotal: function () {
