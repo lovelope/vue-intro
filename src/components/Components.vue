@@ -71,8 +71,38 @@
       <component-a></component-a>
       <component-b></component-b>
     </div>
+    <div class="content-distribution-with-slots">
+      <div class="single-slot">
+        <div>
+          <h1>我是父组件的标题</h1>
+          <my-component-for-slot>
+            <p>这是一些初始内容</p>
+            <p>这是更多的初始内容</p>
+          </my-component-for-slot>
+        </div>
+      </div>
+      <div class="named-slots">
+        <app-layout>
+          <h1 slot="header">这里可能是一个页面标题</h1>
+          <p>主要内容的一个段落</p>
+          <p>主要内容的另一个段落</p>
+          <p slot="footer">这里有一些联系信息</p>
+        </app-layout>
+      </div>
+      <div class="scoped-slots">
+        <div class="parent">
+          <child-scoped>
+            <template scope="props">
+              <span>hello from parent</span>
+              <span>{{ props.text }}</span>
+            </template>
+          </child-scoped>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
 <script>
 import Vue from 'vue'
 
@@ -235,6 +265,39 @@ let componentB = {
   }
 }
 
+let myComponentForSlot = {
+  template: '' +
+  '<div>\n' +
+  '  <h2>我是子组件的标题</h2>\n' +
+  '  <slot>只有在没有要分发的内容时才会显示</slot>\n' +
+  '</div>' +
+  ''
+}
+
+let appLayout = {
+  template: '' +
+  '<div class="container">\n' +
+  '  <header>\n' +
+  '    <slot name="header"></slot>\n' +
+  '  </header>\n' +
+  '  <main>\n' +
+  '    <slot></slot>\n' +
+  '  </main>\n' +
+  '  <footer>\n' +
+  '    <slot name="footer"></slot>\n' +
+  '  </footer>\n' +
+  '</div>' +
+  ''
+}
+
+let childScoped = {
+  template: '\
+    <div class="child">\
+      <slot text="hello from child"></slot>\
+    </div>\
+    '
+}
+
 export default {
   name: 'components',
   data () {
@@ -264,7 +327,10 @@ export default {
     'button-counter': buttonCounter,
     'my-checkbox': myCheckbox,
     'component-a': componentA,
-    'component-b': componentB
+    'component-b': componentB,
+    'my-component-for-slot': myComponentForSlot,
+    'app-layout': appLayout,
+    'child-scoped': childScoped
   },
   methods: {
     incrementTotal: function () {
