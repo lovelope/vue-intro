@@ -98,6 +98,13 @@
             </template>
           </child-scoped>
         </div>
+        <div class="named-slots-list">
+          <my-awesome-list :items="items">
+            <template slot="item" scope="props">
+              <li class="my-fancy-item">{{ props.text }}</li>
+            </template>
+          </my-awesome-list>
+        </div>
       </div>
     </div>
   </div>
@@ -298,6 +305,25 @@ let childScoped = {
     '
 }
 
+let myAwesomeList = {
+  template: '\
+    <ul>\
+      <slot\
+        name="item"\
+        v-for="item in items"\
+        :text="item.text"\
+      >\
+        列表为空\
+      </slot>\
+    </ul>\
+  ',
+  data () {
+    return {
+    }
+  },
+  props: ['items']
+}
+
 export default {
   name: 'components',
   data () {
@@ -314,7 +340,18 @@ export default {
       },
       propFF: 45,
       total: 0,
-      foo: true
+      foo: true,
+      items: [
+        {
+          text: 'Hello1'
+        },
+        {
+          text: 'Hello2'
+        },
+        {
+          text: 'Hello3'
+        }
+      ]
     }
   },
   components: {
@@ -330,7 +367,8 @@ export default {
     'component-b': componentB,
     'my-component-for-slot': myComponentForSlot,
     'app-layout': appLayout,
-    'child-scoped': childScoped
+    'child-scoped': childScoped,
+    'my-awesome-list': myAwesomeList
   },
   methods: {
     incrementTotal: function () {
