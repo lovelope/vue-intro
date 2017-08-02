@@ -110,6 +110,12 @@
     <div class="dynamic-components">
       <dynamic-component :is="currentView"></dynamic-component>
     </div>
+    <div class="dynamic-components">
+      <h1>非活动组件将被缓存</h1>
+      <keep-alive>
+        <dynamic-component :is="currentView"></dynamic-component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
