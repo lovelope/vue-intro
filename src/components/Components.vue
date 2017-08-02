@@ -107,6 +107,9 @@
         </div>
       </div>
     </div>
+    <div class="dynamic-components">
+      <dynamic-component :is="currentView"></dynamic-component>
+    </div>
   </div>
 </template>
 
@@ -351,7 +354,9 @@ export default {
         {
           text: 'Hello3'
         }
-      ]
+      ],
+
+      currentView: 'posts'
     }
   },
   components: {
@@ -368,7 +373,17 @@ export default {
     'my-component-for-slot': myComponentForSlot,
     'app-layout': appLayout,
     'child-scoped': childScoped,
-    'my-awesome-list': myAwesomeList
+    'my-awesome-list': myAwesomeList,
+
+    home: {
+      template: '<div>This is home page.</div>'
+    },
+    posts: {
+      template: '<div>This is posts page.</div>'
+    },
+    archive: {
+      template: '<div>This is archive page.</div>'
+    }
   },
   methods: {
     incrementTotal: function () {
