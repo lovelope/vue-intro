@@ -5,6 +5,7 @@ import Member from '@/components/Member'
 import Test from '@/components/Test'
 import Call from '@/components/Call'
 import Components from '@/components/Components'
+import Advanced from '@/components/Advanced'
 import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
@@ -50,6 +51,14 @@ const router = new Router({
       component: Components,
       meta: {
         title: '组件'
+      }
+    },
+    {
+      path: '/advanced',
+      name: 'Advanced',
+      component: Advanced,
+      meta: {
+        title: '进阶'
       }
     },
     {

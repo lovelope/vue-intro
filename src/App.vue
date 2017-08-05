@@ -18,7 +18,8 @@ export default {
         member: '/member',
         test: '/test',
         call: '/call',
-        components: '/components'
+        components: '/components',
+        advanced: '/advanced'
       }
     }
   }
