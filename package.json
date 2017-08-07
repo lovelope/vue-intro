@@ -1,11 +1,11 @@
 {
-  "name": "vue-demo",
+  "name": "vue-intro",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "lovelope <lovelope@qq.com>",
   "private": true,
   "scripts": {
-    "test": "standard && node build/dev-server.js",
+    "test": "standard --plugin html '**/*.{js,vue}'",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js"
@@ -61,12 +61,12 @@
     ]
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 6.11.2",
+    "npm": ">= 3.10.10"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "Android >= 4",
+    "iOS >= 8",
+    "> 1% in CN"
   ]
 }
