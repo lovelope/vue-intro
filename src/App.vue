@@ -2,16 +2,22 @@
   <div id="app">
     <img src="./assets/logo.png">
     <nav>
-      <router-link v-for="(link, key, index) in links" :to="link" :key="index">Go to {{ key }}</router-link>
+      <router-link
+        v-for="(link, key, index) in links"
+        :key="index"
+        :to="link"
+      >
+        Go to {{ key }}
+      </router-link>
     </nav>
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
-  data () {
+  name: 'App',
+  data() {
     return {
       links: {
         index: '/',
@@ -19,11 +25,11 @@ export default {
         test: '/test',
         call: '/call',
         components: '/components',
-        advanced: '/advanced'
-      }
-    }
-  }
-}
+        advanced: '/advanced',
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>

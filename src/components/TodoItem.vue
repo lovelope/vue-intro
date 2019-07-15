@@ -2,8 +2,8 @@
   <div class="todo-list">
     <input
       v-model="newTodoText"
-      @keyup.enter="addNewTodo"
       placeholder="Add a todo"
+      @keyup.enter="addNewTodo"
     >
     <ul>
       <li
@@ -11,7 +11,9 @@
         :key="index"
       >
         {{ todo }}
-        <button @click="todos.splice(index, 1)">X</button>
+        <button @click="todos.splice(index, 1)">
+          X
+        </button>
       </li>
     </ul>
   </div>
@@ -19,28 +21,28 @@
 
 <script>
 export default {
-  name: 'todoItem',
-  data () {
+  name: 'TodoItem',
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+  data() {
     return {
       newTodoText: '',
-      todos: [
-        'Buy a ticket',
-        'Drink water',
-        'Go to sleep at PM11'
-      ]
-    }
+      todos: ['Buy a ticket', 'Drink water', 'Go to sleep at PM11'],
+    };
   },
-  props: ['title'],
   methods: {
-    addNewTodo: function () {
-      let me = this
-      me.todos.push(me.newTodoText)
-      me.newTodoText = ''
-    }
-  }
-}
+    addNewTodo() {
+      const me = this;
+      me.todos.push(me.newTodoText);
+      me.newTodoText = '';
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

@@ -3,7 +3,7 @@
     <button :disabled="isButtonDisabled">Button</button>
     <p v-if="seen">Now you can see me.</p>
     <a :href="url">This is a link</a>
-    <br>
+    <br />
     <a @click="doSomething">a to be a button</a>
     <p>Original url:{{ url | formatUrl(false, true) }}</p>
     <p>Reversed url:{{ reversedUrl }}</p>
@@ -11,12 +11,16 @@
     <p>full name: {{ fullName }}</p>
     <div class="watch">
       <p>
-        <input v-model="question">
+        <input v-model="question" />
       </p>
       <p>{{ answer }}</p>
     </div>
     <div class="style">
-      <div class="static" :class="{ active: isActive, agree: isAgree }" @click="changeStatus">{{ agreeMessage }}</div>
+      <div
+        class="static"
+        :class="{ active: isActive, agree: isAgree }"
+        @click="changeStatus"
+      >{{ agreeMessage }}</div>
       <div :class="classObject">HAHAHHHHHHHHHHHHHHHHHHHHHHHHHAHAHAHHAHA</div>
       <div :class="[activeClass, errorClass]">YOHEIYOHEI</div>
       <div :class="[isActive ? activeClass : '', errorClass]">GGGGGGGGGGGGGGGG</div>
@@ -49,13 +53,15 @@
       <ul>
         <template v-for="(item, index) in items">
           <li :key="index">{{ item.message }}</li>
-          <li></li>
         </template>
       </ul>
       <ul>
-        <li v-for="(value, key, index) in foreachObject" :key="index">{{ index }}. {{ key }} : {{ value }}</li>
+        <li
+          v-for="(value, key, index) in foreachObject"
+          :key="index"
+        >{{ index }}. {{ key }} : {{ value }}</li>
       </ul>
-      <todoItem></todoItem>
+      <todoItem />
     </div>
     <div class="on">
       <div class="counter">
@@ -85,59 +91,59 @@
       </div>
       <div class="keyModifier">
         <!--当keyCode == 13时调用submit-->
-        <input @keyup.13="submit">
-        <input @keyup.enter="submit">
-        <input @keyup.tab="submit">
-        <input @keyup.delete="submit">
-        <input @keyup.esc="submit">
-        <input @keyup.space="submit">
-        <input @keyup.up="submit">
-        <input @keyup.down="submit">
-        <input @keyup.left="submit">
-        <input @keyup.right="submit">
+        <input @keyup.13="submit" />
+        <input @keyup.enter="submit" />
+        <input @keyup.tab="submit" />
+        <input @keyup.delete="submit" />
+        <input @keyup.esc="submit" />
+        <input @keyup.space="submit" />
+        <input @keyup.up="submit" />
+        <input @keyup.down="submit" />
+        <input @keyup.left="submit" />
+        <input @keyup.right="submit" />
         <!--通过Vue.config.keyCodes.f1 = 112自定义键值修饰符别名-->
-        <input @keyup.f1="submit">
+        <input @keyup.f1="submit" />
         <div>新键值 .ctrl .alt .shift .meta(Win,Mac,META)</div>
         <!-- Alt + C -->
-        <input @keyup.alt.67="clear">
+        <input @keyup.alt.67="clear" />
         <div @click.ctrl="doSomeThing">doSomeThing</div>
         <div>鼠标按键 .left .right .middle</div>
       </div>
     </div>
     <div class="form">
       <div class="singleLineText">
-        <input v-model="singleLineText" placeholder="Edit me">
+        <input v-model="singleLineText" placeholder="Edit me" />
         <p>SingleLineText is: {{ singleLineText }}</p>
       </div>
       <div class="multiLineText">
-        <textarea v-model="multiLineText" placeholder="Edit multi lines text"></textarea>
+        <textarea v-model="multiLineText" placeholder="Edit multi lines text" />
         <p style="white-space: pre-line">MultiLineText is: {{ multiLineText }}</p>
       </div>
       <div class="checkbox">
-        <input type="checkbox" id="checkbox" v-model="checkedStatus">
+        <input id="checkbox" v-model="checkedStatus" type="checkbox" />
         <label for="checkbox">{{ checkedStatus }}</label>
       </div>
       <div class="checkbox-array">
-        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <input id="jack" v-model="checkedNames" type="checkbox" value="Jack" />
         <label for="jack">Jack</label>
-        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <input id="john" v-model="checkedNames" type="checkbox" value="John" />
         <label for="john">John</label>
-        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <input id="mike" v-model="checkedNames" type="checkbox" value="Mike" />
         <label for="mike">Mike</label>
-        <br>
+        <br />
         <span>Checked Names: {{ checkedNames }}</span>
       </div>
       <div class="radio">
-        <input type="radio" name="pickIt" id="one" value="One" v-model="picked">
+        <input id="one" v-model="picked" type="radio" name="pickIt" value="One" />
         <label for="one">One</label>
-        <input type="radio" name="pickIt" id="two" value="Two" v-model="picked">
+        <input id="two" v-model="picked" type="radio" name="pickIt" value="Two" />
         <label for="two">Two</label>
-        <br>
+        <br />
         <span>Picked: {{ picked }}</span>
       </div>
       <div class="select">
-        <select name="selectIt" id="selectIt" v-model="selected">
-          <option disabled value="">请选择</option>
+        <select id="selectIt" v-model="selected" name="selectIt">
+          <option disabled value>请选择</option>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
@@ -145,7 +151,7 @@
         <span>Selected: {{ selected }}</span>
       </div>
       <div class="select-multiple">
-        <select name="selectItNow" id="selectItNow" multiple v-model="selectedItems">
+        <select id="selectItNow" v-model="selectedItems" name="selectItNow" multiple>
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
@@ -153,28 +159,32 @@
         <span>SelectedItems: {{ selectedItems }}</span>
       </div>
       <div class="select-multiple2">
-        <select name="selectItNow" id="selectItNow2" multiple v-model="selectedItems2">
-          <option v-for="option in options" :value="option.value" :key="option.value">{{ option.text }}</option>
+        <select id="selectItNow2" v-model="selectedItems2" name="selectItNow" multiple>
+          <option
+            v-for="option in options"
+            :key="option.value"
+            :value="option.value"
+          >{{ option.text }}</option>
         </select>
         <span>SelectedItems2: {{ selectedItems2 }}</span>
       </div>
       <div class="bind-value">
-        <input type="checkbox" v-model="toggle" :true-value="a" :false-value="b">
+        <input v-model="toggle" type="checkbox" :true-value="a" :false-value="b" />
         <span>toggle is: {{ toggle }}，当选中时toggle的值为a的值，未选中时toggle的值为b的值</span>
-        <input type="radio" v-model="pick" :value="a">
+        <input v-model="pick" type="radio" :value="a" />
         <span>pick is: {{ pick }}</span>
       </div>
       <div class="formModifier">
         <p>
-          <input v-model.lazy="formModifier1">
+          <input v-model.lazy="formModifier1" />
           <span>formModifier1:{{ formModifier1 }} .lazy延时change</span>
         </p>
         <p>
-          <input v-model.number="formModifier2">
+          <input v-model.number="formModifier2" />
           <span>formModifier2:{{ formModifier2 }} .number只接受数字</span>
         </p>
         <p>
-          <input v-model.trim="formModifier3">
+          <input v-model.trim="formModifier3" />
           <span>formModifier3:{{ formModifier3 }} .trim去除首尾空白字符</span>
         </p>
       </div>
@@ -183,11 +193,29 @@
 </template>
 
 <script>
-import todoItem from '@/components/TodoItem'
+import todoItem from '@/components/TodoItem.vue';
 
 export default {
-  name: 'test',
-  data () {
+  name: 'Test',
+  components: { todoItem },
+  filters: {
+    /* eslint-disable no-param-reassign */
+    formatUrl(url, isLowerCase, isUtf8) {
+      if (!url) {
+        url = '';
+      }
+      url = url.toString();
+      if (!isLowerCase) {
+        url = url.toLowerCase();
+      }
+      if (isUtf8) {
+        url = encodeURI(url);
+      }
+      return url;
+    },
+    /* eslint-enable no-param-reassign */
+  },
+  data() {
     return {
       isButtonDisabled: false,
       seen: true,
@@ -202,7 +230,7 @@ export default {
       agreeMessage: 'Click this button to agree',
       classObject: {
         active: false,
-        'text-danger': true
+        'text-danger': true,
       },
       activeClass: 'active',
       errorClass: 'text-danger',
@@ -210,21 +238,18 @@ export default {
       fontSize: 30,
       styleObject: {
         color: 'red',
-        fontSize: '24px'
+        fontSize: '24px',
       },
 
       ok: true,
       type: 'C',
 
-      items: [
-        {message: 'Foo'},
-        {message: 'Bar'}
-      ],
+      items: [{ message: 'Foo' }, { message: 'Bar' }],
 
       foreachObject: {
         name: 'Liu Lan',
         gender: 'female',
-        age: 34
+        age: 34,
       },
 
       counter: 0,
@@ -238,9 +263,9 @@ export default {
       selected: '',
       selectedItems: [],
       options: [
-        {text: 'One', value: 'A'},
-        {text: 'Two', value: 'B'},
-        {text: 'Three', value: 'C'}
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' },
       ],
       selectedItems2: [],
       toggle: '',
@@ -250,127 +275,119 @@ export default {
 
       formModifier1: '',
       formModifier2: '',
-      formModifier3: ''
-    }
+      formModifier3: '',
+    };
   },
-  components: {todoItem},
   computed: {
-    reversedUrl: function () {
-      let url = this.url
+    reversedUrl() {
+      let { url } = this;
       if (!url) {
-        url = ''
-      }
-      return url.toString().toLowerCase().split('').reverse().join('')
-    },
-    now: function () {
-      return Date.now()
-    },
-    fullName: {
-      get: function () {
-        return this.firstName + ' ' + this.lastName
-      },
-      set: function (newValue) {
-        var names = newValue.split(' ')
-        this.firstName = names[0]
-        this.lastName = names[names.length - 1]
-      }
-    },
-    classObjectNew: function () {
-      return {
-        active: this.isActive && !this.error,
-        'text-danger': this.error && this.error.type === 'fatal'
-      }
-    }
-  },
-  watch: {
-    question: function (newQuestion) {
-      let me = this
-      me.answer = 'Waiting for you to stop typing...'
-      me.getAnswer()
-    }
-  },
-  methods: {
-    doSomething: function (event) {
-      window.alert('U clicked me!!! <' + event.target.tagName.toLowerCase() + '>')
-    },
-    getAnswer: function () {
-      let me = this
-      if (me.question.indexOf('?') === -1) {
-        me.answer = 'Questions usually contain a question mark. ;-)'
-        return
-      }
-      me.answer = 'Thinking...'
-      setTimeout(function () {
-        me.answer = (Math.random() > 0.5) ? 'yes' : 'no'
-      }, 500)
-    },
-    changeStatus: function () {
-      let me = this
-      me.isActive = !me.isActive
-      me.isAgree = !me.isAgree
-      me.agreeMessage = me.isAgree ? 'You have agreed to this clause.' : 'Click this button to agree'
-    },
-    greet: function (event) {
-      window.alert(`Hello, ${this.fullName}!`)
-      if (event) {
-        window.alert(event.target.tagName)
-      }
-    },
-    say: function (message) {
-      window.alert(message)
-    },
-    warn: function (message, event) {
-      if (event) {
-        event.preventDefault()
-      }
-      window.alert(message)
-    }
-  },
-  filters: {
-    formatUrl: function (url, isLowerCase, isUtf8) {
-      if (!url) {
-        url = ''
-      }
-      url = url.toString()
-      if (!isLowerCase) {
-        url = url.toLowerCase()
-      }
-      if (isUtf8) {
-        url = encodeURI(url)
+        url = '';
       }
       return url
-    }
-  }
-}
+        .toString()
+        .toLowerCase()
+        .split('')
+        .reverse()
+        .join('');
+    },
+    now() {
+      return Date.now();
+    },
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+      set(newValue) {
+        const names = newValue.split(' ');
+        // eslint-disable-next-line prefer-destructuring
+        this.firstName = names[0];
+        this.lastName = names[names.length - 1];
+      },
+    },
+    classObjectNew() {
+      return {
+        active: this.isActive && !this.error,
+        'text-danger': this.error && this.error.type === 'fatal',
+      };
+    },
+  },
+  watch: {
+    question() {
+      const me = this;
+      me.answer = 'Waiting for you to stop typing...';
+      me.getAnswer();
+    },
+  },
+  methods: {
+    doSomething(event) {
+      window.alert(`U clicked me!!! <${event.target.tagName.toLowerCase()}>`);
+    },
+    getAnswer() {
+      const me = this;
+      if (me.question.indexOf('?') === -1) {
+        me.answer = 'Questions usually contain a question mark. ;-)';
+        return;
+      }
+      me.answer = 'Thinking...';
+      setTimeout(() => {
+        me.answer = Math.random() > 0.5 ? 'yes' : 'no';
+      }, 500);
+    },
+    changeStatus() {
+      const me = this;
+      me.isActive = !me.isActive;
+      me.isAgree = !me.isAgree;
+      me.agreeMessage = me.isAgree
+        ? 'You have agreed to this clause.'
+        : 'Click this button to agree';
+    },
+    greet(event) {
+      window.alert(`Hello, ${this.fullName}!`);
+      if (event) {
+        window.alert(event.target.tagName);
+      }
+    },
+    say(message) {
+      window.alert(message);
+    },
+    warn(message, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      window.alert(message);
+    },
+  },
+};
 </script>
 
 <style scoped>
-  button {
+button {
   padding: 0;
   width: 80%;
   height: 3em;
   line-height: 3em;
   border-radius: 100px;
 }
-  a {
+a {
   display: block;
   border: solid 1px #2c3e50;
   background: #42b983;
 }
-  .static {
+.static {
   width: 100%;
   height: 3em;
   border: solid 1px #2c3e50;
 }
-  .active {
+.active {
   background: #42b983;
   color: #f00;
 }
-  .agree {
+.agree {
   background: #42b983;
   color: #0ff;
 }
-  .text-danger {
+.text-danger {
   color: #f60;
   font-weight: bold;
 }

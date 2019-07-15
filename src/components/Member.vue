@@ -7,7 +7,10 @@
         <th>Gender</th>
         <th>Age</th>
       </tr>
-      <tr v-for="(item, index) in teamMember" :key="index">
+      <tr
+        v-for="(item, index) in teamMember"
+        :key="index"
+      >
         <td>{{ item.name }}</td>
         <td>{{ item.gender }}</td>
         <td>{{ item.age }}</td>
@@ -18,30 +21,30 @@
 
 <script>
 export default {
-  name: 'admin',
-  data () {
+  name: 'Admin',
+  data() {
     return {
       teamName: 'FrontEndFamily',
       teamMember: [
         {
           name: 'Clare',
           gender: 'Male',
-          age: 22
+          age: 22,
         },
         {
           name: 'Danny',
           gender: 'Male',
-          age: 36
+          age: 36,
         },
         {
           name: 'ella',
           gender: 'Female',
-          age: 26
-        }
-      ]
-    }
-  }
-}
+          age: 26,
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>

@@ -6,20 +6,20 @@
 
 <script>
 export default {
-  name: 'call',
-  data () {
+  name: 'Call',
+  data() {
     return {
-      phone: '13117617863'
-    }
+      phone: '18866668888',
+    };
   },
   methods: {
-    counter: function () {
-      let me = this
-      window.alert('是否确认拨打此电话：' + me.phone)
-      window.location.href = 'tel://' + me.phone
-    }
-  }
-}
+    counter() {
+      const me = this;
+      window.alert(`是否确认拨打此电话：${me.phone}`);
+      window.location.href = `tel://${me.phone}`;
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -2,24 +2,24 @@
   <div class="components">
     <div>!important 组件的data字段必须是函数</div>
     <div class="global-component-demo">
-      <global-component-demo></global-component-demo>
+      <global-component-demo />
     </div>
     <div class="local-component-demo">
-      <local-component-demo></local-component-demo>
+      <local-component-demo />
     </div>
     <div class="restricted-element">
       <table>
-        <tr is="my-row"></tr>
+        <tr is="my-row" />
       </table>
     </div>
     <div class="props">
       <div class="static">
-        <local-component-demo message="hello"></local-component-demo>
+        <local-component-demo message="hello" />
       </div>
       <div class="dynamic-props">
-        <input v-model="parentMsg">
-        <br>
-        <child :my-message="parentMsg"></child>
+        <input v-model="parentMsg" />
+        <br />
+        <child :my-message="parentMsg" />
       </div>
       <div class="props-type">
         <p some-prop="1">This is a string type 1</p>
@@ -27,49 +27,51 @@
       </div>
       <div class="unidirectional-data-stream">
         <div class="no-change-prop-in-child-comp">
-          <child-counter :initialCounter="initialCounterFromParent"></child-counter>
+          <child-counter :initial-counter="initialCounterFromParent" />
         </div>
         <div class="computed-props">
-          <computed-prop :size="sizeFromParent"></computed-prop>
+          <computed-prop :size="sizeFromParent" />
         </div>
       </div>
       <div class="props-validator">
-        <div class="active">注意 props 会在组件实例创建之前进行校验，所以在 default 或 validator 函数里，诸如 data、computed 或 methods 等实例属性还无法使用。</div>
+        <div class="active">
+          注意 props 会在组件实例创建之前进行校验，所以在 default 或 validator 函数里，
+          诸如 data、computed 或 methods 等实例属性还无法使用。
+        </div>
         <props-validator
-          :propA="propAA"
-          :propB="propBB"
-          :propC="propCC"
-          :propD="propDD"
-          :propE="propEE"
-          :propF="propFF"
-          ></props-validator>
+          :prop-a="propAA"
+          :prop-b="propBB"
+          :prop-c="propCC"
+          :prop-d="propDD"
+          :prop-e="propEE"
+          :prop-f="propFF"
+        />
       </div>
       <div class="replace-prop">
-        <p>例如，第三方组件 bs-date-input，当它要和一个 Bootstrap 插件互操作时，需要在这个第三方组件的 input 上添加 data-3d-date-picker 属性，这时可以把属性直接添加到组件上 (不需要事先定义 prop)：
-          <br>
-          &lt;bs-date-input data-3d-date-picker="true"&gt;&lt;/bs-date-input&gt;
-          <br>
-          添加属性 data-3d-date-picker="true" 之后，它会被自动添加到 bs-date-input 的根元素上</p>
+        <p>
+          例如，第三方组件 bs-date-input，当它要和一个 Bootstrap 插件互操作时，
+          需要在这个第三方组件的 input 上添加 data-3d-date-picker 属性，
+          这时可以把属性直接添加到组件上 (不需要事先定义 prop)：
+          <br />&lt;bs-date-input data-3d-date-picker="true"&gt;&lt;/bs-date-input&gt;
+          <br />添加属性 data-3d-date-picker="true" 之后，它会被自动添加到 bs-date-input 的根元素上
+        </p>
         <p>class和style属性将会合并</p>
       </div>
     </div>
     <div class="v-on-bind-custom-events">
       <div class="counter-event-example">
         <p>合计：{{ total }}</p>
-        <button-counter @increment="incrementTotal"></button-counter>
-        <button-counter @increment="incrementTotal"></button-counter>
+        <button-counter @increment="incrementTotal" />
+        <button-counter @increment="incrementTotal" />
       </div>
     </div>
     <div class="custom-input-component">
-      <my-checkbox
-        v-model="foo"
-        value="some value"
-      ></my-checkbox>
+      <my-checkbox v-model="foo" value="some value" />
       <p>foo: {{ foo }}</p>
     </div>
     <div class="non-parent-child-communication">
-      <component-a></component-a>
-      <component-b></component-b>
+      <component-a />
+      <component-b />
     </div>
     <div class="content-distribution-with-slots">
       <div class="single-slot">
@@ -92,7 +94,7 @@
       <div class="scoped-slots">
         <div class="parent">
           <child-scoped>
-            <template scope="props">
+            <template slot-scope="props">
               <span>hello from parent</span>
               <span>{{ props.text }}</span>
             </template>
@@ -100,7 +102,7 @@
         </div>
         <div class="named-slots-list">
           <my-awesome-list :items="items">
-            <template slot="item" scope="props">
+            <template slot="item" slot-scope="props">
               <li class="my-fancy-item">{{ props.text }}</li>
             </template>
           </my-awesome-list>
@@ -108,82 +110,74 @@
       </div>
     </div>
     <div class="dynamic-components">
-      <dynamic-component :is="currentView"></dynamic-component>
+      <dynamic-component :is="currentView" />
     </div>
     <div class="dynamic-components">
       <h1>非活动组件将被缓存</h1>
       <keep-alive>
-        <dynamic-component :is="currentView"></dynamic-component>
+        <dynamic-component :is="currentView" />
       </keep-alive>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from 'vue';
 
 Vue.component('global-component-demo', {
-  template: '<div>A global component demo</div>'
-})
+  template: '<div>A global component demo</div>',
+});
 
-let Child = {
+const Child = {
   template: '<div>A local component demo {{ message }}</div>',
-  props: [
-    'message'
-  ]
-}
+  props: ['message'],
+};
 
-let childComponent = {
+const childComponent = {
   template: '<span>{{ myMessage }}</span>',
-  props: [
-    'myMessage'
-  ]
-}
-let myRow = {
-  template: '<tr>A local component demo -- my row</tr>'
-}
+  props: ['myMessage'],
+};
+const myRow = {
+  template: '<tr>A local component demo -- my row</tr>',
+};
 
-let childCounter = {
+const childCounter = {
   template: '<div>counter: {{ counter }}</div>',
-  props: [
-    'initialCounter'
-  ],
-  data: function () {
+  props: ['initialCounter'],
+  data() {
     return {
-      counter: this.initialCounter
-    }
-  }
-}
+      counter: this.initialCounter,
+    };
+  },
+};
 
-let computedProp = {
+const computedProp = {
   template: '<div>normalizedSize: {{ normalizedSize }}</div>',
-  props: [
-    'size'
-  ],
+  props: ['size'],
   computed: {
-    normalizedSize: function () {
-      return this.size.trim().toLowerCase()
-    }
-  }
-}
+    normalizedSize() {
+      return this.size.trim().toLowerCase();
+    },
+  },
+};
 
-let propsValidator = {
-  template: '' +
-    '<table>\n' +
-    '  <tr v-for="item in 6">\n' +
-    '    <th>prop{{ String.fromCharCode(65 - 1 + item) }}</th>\n' +
-    '    <td>{{ getProp(item) }}</td>\n' +
-    '  </tr>\n' +
-    '</table>' +
-    '',
-  data () {
-    return {
-    }
+const propsValidator = {
+  template:
+    ''
+    + '<table>\n'
+    + '  <tr v-for="item in 6">\n'
+    + '    <th>prop{{ String.fromCharCode(65 - 1 + item) }}</th>\n'
+    + '    <td>{{ getProp(item) }}</td>\n'
+    + '  </tr>\n'
+    + '</table>'
+    + '',
+  data() {
+    return {};
   },
   methods: {
-    getProp: function (item) {
-      return this['prop' + String.fromCharCode(65 - 1 + item)]
-    }
+    getProp(item) {
+      return this[`prop${String.fromCharCode(65 - 1 + item)}`];
+    },
   },
   props: {
     // 基础类型检测（‘null’意思是任何类型都可以）
@@ -193,182 +187,150 @@ let propsValidator = {
     // 必传并且是字符串
     propC: {
       type: String,
-      required: true
+      required: true,
     },
     // 数字且有默认值
     propD: {
       type: Number,
-      default: 100
+      default: 100,
     },
     // 数组或对象的默认值应当由一个工厂函数返回
     propE: {
       type: Object,
-      default: function () {
+      default() {
         return {
-          message: 'Hello'
-        }
-      }
+          message: 'Hello',
+        };
+      },
     },
     // 自定义验证函数
     propF: {
-      validator: function (value) {
-        return value > 10
-      }
-    }
-  }
-}
+      validator(value) {
+        return value > 10;
+      },
+    },
+  },
+};
 
-let buttonCounter = {
+const buttonCounter = {
   template: '<button @click="increment">total: {{ counter }}</button>',
-  data () {
+  data() {
     return {
-      counter: 0
-    }
+      counter: 0,
+    };
   },
   methods: {
-    increment: function () {
-      let me = this
-      me.counter += 1
-      me.$emit('increment')
-    }
-  }
-}
+    increment() {
+      const me = this;
+      me.counter += 1;
+      me.$emit('increment');
+    },
+  },
+};
 
 // TODO: Customizing-Component-v-model
-let myCheckbox = {
+const myCheckbox = {
   template: '<input type="checkbox" :value="value">',
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   model: {
     prop: 'checked',
-    event: 'change'
+    event: 'change',
   },
   props: {
     checked: Boolean,
-    value: String
-  }
-}
+    value: String,
+  },
+};
 
-let bus = new Vue()
+const bus = new Vue();
 
-let componentA = {
+const componentA = {
   template: '<button @click="selected">1</button>',
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   methods: {
-    selected: function () {
-      bus.$emit('id-selected', 1)
-    }
-  }
-}
+    selected() {
+      bus.$emit('id-selected', 1);
+    },
+  },
+};
 
-let componentB = {
+const componentB = {
   template: '<button>{{ index }}</button>',
-  data () {
+  data() {
     return {
-      index: 0
-    }
+      index: 0,
+    };
   },
-  created: function () {
-    let me = this
-    bus.$on('id-selected', function (id) {
-      me.index = id
-    })
-  }
-}
-
-let myComponentForSlot = {
-  template: '' +
-  '<div>\n' +
-  '  <h2>我是子组件的标题</h2>\n' +
-  '  <slot>只有在没有要分发的内容时才会显示</slot>\n' +
-  '</div>' +
-  ''
-}
-
-let appLayout = {
-  template: '' +
-  '<div class="container">\n' +
-  '  <header>\n' +
-  '    <slot name="header"></slot>\n' +
-  '  </header>\n' +
-  '  <main>\n' +
-  '    <slot></slot>\n' +
-  '  </main>\n' +
-  '  <footer>\n' +
-  '    <slot name="footer"></slot>\n' +
-  '  </footer>\n' +
-  '</div>' +
-  ''
-}
-
-let childScoped = {
-  template: '\
-    <div class="child">\
-      <slot text="hello from child"></slot>\
-    </div>\
-    '
-}
-
-let myAwesomeList = {
-  template: '\
-    <ul>\
-      <slot\
-        name="item"\
-        v-for="item in items"\
-        :text="item.text"\
-      >\
-        列表为空\
-      </slot>\
-    </ul>\
-  ',
-  data () {
-    return {
-    }
+  created() {
+    const me = this;
+    bus.$on('id-selected', (id) => {
+      me.index = id;
+    });
   },
-  props: ['items']
-}
+};
+
+const myComponentForSlot = {
+  template:
+    ''
+    + '<div>\n'
+    + '  <h2>我是子组件的标题</h2>\n'
+    + '  <slot>只有在没有要分发的内容时才会显示</slot>\n'
+    + '</div>'
+    + '',
+};
+
+const appLayout = {
+  template:
+    ''
+    + '<div class="container">\n'
+    + '  <header>\n'
+    + '    <slot name="header"></slot>\n'
+    + '  </header>\n'
+    + '  <main>\n'
+    + '    <slot></slot>\n'
+    + '  </main>\n'
+    + '  <footer>\n'
+    + '    <slot name="footer"></slot>\n'
+    + '  </footer>\n'
+    + '</div>'
+    + '',
+};
+
+const childScoped = {
+  template: `
+    <div class="child">
+      <slot text="hello from child"></slot>
+    </div>`,
+};
+
+const myAwesomeList = {
+  template: `
+    <ul>
+      <slot
+        name="item"
+        v-for="item in items"
+        :text="item.text"
+      >
+        列表为空
+      </slot>
+    </ul>
+  `,
+  data() {
+    return {};
+  },
+  props: ['items'],
+};
 
 export default {
-  name: 'components',
-  data () {
-    return {
-      parentMsg: '',
-      initialCounterFromParent: 66,
-      sizeFromParent: '32EM',
-      propAA: 33,
-      propBB: '566',
-      propCC: 'This is a string.',
-      propDD: 666,
-      propEE: {
-        message: 'World'
-      },
-      propFF: 45,
-      total: 0,
-      foo: true,
-      items: [
-        {
-          text: 'Hello1'
-        },
-        {
-          text: 'Hello2'
-        },
-        {
-          text: 'Hello3'
-        }
-      ],
-
-      currentView: 'posts'
-    }
-  },
+  name: 'Components',
   components: {
     'local-component-demo': Child,
     'my-row': myRow,
-    'child': childComponent,
+    child: childComponent,
     'child-counter': childCounter,
     'computed-prop': computedProp,
     'props-validator': propsValidator,
@@ -382,19 +344,49 @@ export default {
     'my-awesome-list': myAwesomeList,
 
     home: {
-      template: '<div>This is home page.</div>'
+      template: '<div>This is home page.</div>',
     },
     posts: {
-      template: '<div>This is posts page.</div>'
+      template: '<div>This is posts page.</div>',
     },
     archive: {
-      template: '<div>This is archive page.</div>'
-    }
+      template: '<div>This is archive page.</div>',
+    },
+  },
+  data() {
+    return {
+      parentMsg: '',
+      initialCounterFromParent: 66,
+      sizeFromParent: '32EM',
+      propAA: 33,
+      propBB: '566',
+      propCC: 'This is a string.',
+      propDD: 666,
+      propEE: {
+        message: 'World',
+      },
+      propFF: 45,
+      total: 0,
+      foo: true,
+      items: [
+        {
+          text: 'Hello1',
+        },
+        {
+          text: 'Hello2',
+        },
+        {
+          text: 'Hello3',
+        },
+      ],
+
+      currentView: 'posts',
+    };
   },
   methods: {
-    incrementTotal: function () {
-      this.total += 1
-    }
-  }
-}
+    incrementTotal() {
+      this.total += 1;
+    },
+  },
+};
 </script>
