@@ -1,3 +1,9 @@
+const OFF = 0;
+const WARN = 1;
+const ERROR = 2;
+
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   root: true,
   env: {
@@ -7,9 +13,9 @@ module.exports = {
   },
   extends: ['plugin:vue/essential', '@vue/airbnb'],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-alert': 'off',
+    'no-console': isProd ? ERROR : OFF,
+    'no-debugger': isProd ? ERROR : OFF,
+    'no-alert': isProd ? WARN : OFF,
   },
   parserOptions: {
     parser: 'babel-eslint',
