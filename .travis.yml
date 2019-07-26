@@ -9,7 +9,9 @@ git:
 matrix:
   include:
     - os: linux
-      env: DISPLAY=':99.0'
+      env:
+        - CHROME_BIN='/usr/bin/google-chrome'
+        - DISPLAY=':99.0'
       dist: trusty
       addons:
         apt:
