@@ -22,7 +22,7 @@ matrix:
       env: HOMEBREW_CASK_OPTS='--appdir=/Applications'
       addons:
         homebrew:
-          # update: true # too slow
+          update: true # too slow
           casks:
             - google-chrome
 
