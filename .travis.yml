@@ -28,6 +28,7 @@ matrix:
 
 install:
   - npm install
+  - npm install chromedriver@latest
 
 script:
   - "npm run test:e2e"
