@@ -1,1 +1,8 @@
-module.exports = { runtimeCompiler: true };
+module.exports = {
+  runtimeCompiler: true,
+  pwa: {
+    workboxOptions: {
+      importWorkboxFrom: 'local',
+    },
+  },
+};
